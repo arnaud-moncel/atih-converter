@@ -13,7 +13,7 @@ function App() {
         )
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', 'export.csv');
+        link.setAttribute('download', 'VID-SSIAD.csv');
         document.body.appendChild(link);
         link.click();
         link.parentNode.removeChild(link);

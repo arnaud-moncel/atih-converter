@@ -1,14 +1,5 @@
 import { read } from 'xlsx';
 
-function extractDate(date) {
-  let [month, day, year] = date.split('/');
-
-  day = day.length === 1 ? `0${day}` : day;
-  month = month.length === 1 ? `0${month}` : month;
-
-  return `${day}${month}19${year}`
-}
-
 export default async function convert(file) {
   const buffer = await file.arrayBuffer();
   const sheetFile = read(buffer);
@@ -25,7 +16,7 @@ export default async function convert(file) {
     let id = sheet[`H${i}`].w;
   
     id = id.replace(/ /g, '');
-    birthDate = extractDate(birthDate);
+    birthDate = birthDate.replace(/\//g, '');
     sex = sex === 'M' ? 1 : 2;
     csv += `\n${id};${birthDate};${sex};${ipp};${name};${firstName}`;
   
